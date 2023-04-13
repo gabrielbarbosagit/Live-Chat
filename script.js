@@ -25,6 +25,9 @@ const enterRoom = () => {
 // Function to prompt user for username
 const promptForUsername = () => {
   username = prompt('Enter your username:');
+  usernameInputElement.setAttribute('data-test', 'input-name'); // Add data-test attribute with value 'input-name'
+  usernameInputElement.value = username;
+
   enterRoom();
 };
 
