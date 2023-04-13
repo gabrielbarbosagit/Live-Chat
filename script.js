@@ -4,35 +4,43 @@ axios.defaults.headers.common['Authorization'] = 'PA5po1mijRqzQnSaymxtk4H7';
 let username = ''; // Initialize username variable
 
 // Function to enter the room
+// Function to enter the room
+// Function to enter the room
+// Function to enter the room
 const enterRoom = () => {
-    axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', { name: username })
-      .then(response => {
-        if (response.status === 200) {
-          console.log('Entered the room:', response.data);
-          fetchMessages();
-        }
-      })
-      .catch(error => {
-        if (error.response && error.response.status === 400) {
-          console.error('Failed to enter the room: Username already in use');
-          alert('Failed to enter the room: Username already in use'); // Show alert
-          promptForUsername();
-        } else {
-          console.error('Failed to enter the room:', error);
-        }
-      });
-  };
+  axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', { name: username })
+    .then(response => {
+      if (response.status === 200) {
+        console.log('Entered the room:', response.data);
+        fetchMessages();
+      }
+    })
+    .catch(error => {
+      if (error.response && error.response.status === 400) {
+        console.error('Failed to enter the room: Username already in use');
+        alert('Failed to enter the room: Username already in use'); // Show alert
+        promptForUsername();
+      } else {
+        console.error('Failed to enter the room:', error);
+      }
+    });
+};
+
 // Function to prompt user for username
 const promptForUsername = () => {
-  username = prompt('Enter your username:');
-  usernameInputElement.setAttribute("data-test=input-name"); // Add data-test attribute with value 'input-name'
-  usernameInputElement.value = username;
-
-  enterRoom();
+  const promptInput = prompt('Enter your username:');
+  if (promptInput !== null && promptInput.trim() !== '') { // Check if prompt input is not null and not empty
+    const inputElement = document.querySelector('input'); // Select the existing input element
+    inputElement.value = promptInput.trim(); // Set input value from prompt input
+    inputElement.setAttribute('data-test', 'input-name'); // Add data-test attribute with value 'input-name' to input element
+    username = inputElement.value.trim(); // Set username from input value
+    enterRoom(); // Call enterRoom() function
+  }
 };
 
 // Call the function to prompt user for username initially
 promptForUsername();
+
 
 // Function to fetch messages from the server
 const fetchMessages = () => {
@@ -54,13 +62,13 @@ const displayMessages = (messages) => {
     chatMessagesElement.innerHTML = '';
     messages.forEach(message => {
       const listItem = document.createElement('li');
-      listItem.setAttribute("data-test=message"); // Add data-test attribute with value 'message'
+      listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
       listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
-  
+
       chatMessagesElement.appendChild(listItem);
     });
   };
-  
+
 
 // Call the fetchMessages function to fetch messages initially
 fetchMessages();
