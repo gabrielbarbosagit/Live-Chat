@@ -25,7 +25,7 @@ const enterRoom = () => {
 // Function to prompt user for username
 const promptForUsername = () => {
   username = prompt('Enter your username:');
-  usernameInputElement.setAttribute('data-test', 'input-name'); // Add data-test attribute with value 'input-name'
+  usernameInputElement.setAttribute("data-test=input-name"); // Add data-test attribute with value 'input-name'
   usernameInputElement.value = username;
 
   enterRoom();
@@ -54,7 +54,7 @@ const displayMessages = (messages) => {
     chatMessagesElement.innerHTML = '';
     messages.forEach(message => {
       const listItem = document.createElement('li');
-      listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
+      listItem.setAttribute("data-test=message"); // Add data-test attribute with value 'message'
       listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
   
       chatMessagesElement.appendChild(listItem);
