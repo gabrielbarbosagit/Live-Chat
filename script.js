@@ -156,8 +156,11 @@ function sendMessage(userName, messageText) {
   // Append the sent message to the messages container immediately
   const messagesContainer = document.getElementById('chat-messages');
   const messageElement = document.createElement('li');
-  messageElement.textContent = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
+  messageElement.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`; // Update innerHTML instead of textContent
   messagesContainer.appendChild(messageElement);
+
+  // Scroll to the bottom of the chat messages container
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
   // Send a POST request to the API endpoint to send a public message
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', message)
@@ -170,8 +173,12 @@ function sendMessage(userName, messageText) {
     .catch(error => {
       // Handle error for sending public message
       console.error(`Error sending public message: ${error.message}`);
-      // Reload the page to go back to the name input step
-      window.location.reload();
+      // Reload the page only if there is an error status returned by the server
+      if (error.response && error.response.status) {
+        window.location.reload();
+      }
     });
 }
+
+
 
