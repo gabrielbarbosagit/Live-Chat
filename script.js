@@ -66,12 +66,12 @@ const fetchMessages = () => {
 };
 
 // Function to display messages according to layout
+// Function to display messages according to layout
 const displayMessages = (messages) => {
   const chatMessagesElement = document.getElementById('chat-messages');
   chatMessagesElement.innerHTML = '';
   messages.forEach(message => {
     const listItem = document.createElement('li');
-    listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
     listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
 
     chatMessagesElement.appendChild(listItem);
@@ -80,6 +80,7 @@ const displayMessages = (messages) => {
   // Scroll to the bottom of the chat messages container
   chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
 };
+
 
 // Call the fetchMessages function to fetch messages initially
 fetchMessages();
@@ -135,6 +136,7 @@ sendButton.addEventListener('click', (event) => {
 
 // Função para enviar uma mensagem pública
 
+// Função para enviar uma mensagem pública
 function sendMessage(userName, messageText) {
   // Get the current time
   const currentTime = new Date().toLocaleTimeString();
@@ -145,8 +147,7 @@ function sendMessage(userName, messageText) {
     to: 'public',
     text: messageText,
     time: currentTime,
-    type: 'message',
-    'data-test': 'message' // Add the data-test attribute to the message object
+    type: 'message'
   };
 
   // Display the message in the console
@@ -155,7 +156,7 @@ function sendMessage(userName, messageText) {
   // Append the sent message to the messages container immediately
   const messagesContainer = document.getElementById('chat-messages');
   const messageElement = document.createElement('li');
-  messageElement.textContent = `${userName}: ${messageText}`;
+  messageElement.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
   messagesContainer.appendChild(messageElement);
 
   // Send a POST request to the API endpoint to send a public message
@@ -163,7 +164,6 @@ function sendMessage(userName, messageText) {
     .then(response => {
       // If the server responds with a successful status (200), continue fetching and displaying messages
       console.log(`Public message sent by user ${userName}.`);
-      // Removed the redundant call to fetchMessagesAndDisplay() here
     })
     .catch(error => {
       // Handle error for sending public message
