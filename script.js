@@ -10,7 +10,7 @@ const enterRoom = () => {
     .then(response => {
       if (response.status === 200) {
         console.log('Entered the room:', response.data);
-        fetchMessages(); // Move fetchMessages() function call here
+        fetchMessages(); 
       }
     })
     .catch(error => {
@@ -150,13 +150,19 @@ function sendMessage(userName, messageText) {
   };
 
   // Display the message in the console
-  console.log(`From: ${username}, Text: ${messageText}, Time: ${currentTime}`);
+  console.log(`From: ${userName}, Text: ${messageText}, Time: ${currentTime}`);
+
+  // Append the sent message to the messages container immediately
+  const messagesContainer = document.getElementById('chat-messages');
+  const messageElement = document.createElement('li');
+  messageElement.textContent = `${userName}: ${messageText}`;
+  messagesContainer.appendChild(messageElement);
 
   // Send a POST request to the API endpoint to send a public message
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', message)
     .then(response => {
       // If the server responds with a successful status (200), continue fetching and displaying messages
-      console.log(`Public message sent by user ${username}.`);
+      console.log(`Public message sent by user ${userName}.`);
       // Removed the redundant call to fetchMessagesAndDisplay() here
     })
     .catch(error => {
