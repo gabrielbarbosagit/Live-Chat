@@ -31,9 +31,8 @@ const promptForUsername = () => {
   const promptInput = prompt('Enter your username:');
   if (promptInput !== null && promptInput.trim() !== '') { // Check if prompt input is not null and not empty
     const inputElement = document.querySelector('input'); // Select the existing input element
-    inputElement.value = promptInput.trim(); // Set input value from prompt input
     inputElement.setAttribute('data-test', 'input-name'); // Add data-test attribute with value 'input-name' to input element
-    username = inputElement.value.trim(); // Set username from input value
+    username = promptInput.trim(); // Set username from prompt input
     enterRoom(); // Call enterRoom() function
   }
 };
@@ -58,17 +57,19 @@ const fetchMessages = () => {
 
 // Function to display messages according to layout
 const displayMessages = (messages) => {
-    const chatMessagesElement = document.getElementById('chat-messages');
-    chatMessagesElement.innerHTML = '';
-    messages.forEach(message => {
-      const listItem = document.createElement('li');
-      listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
-      listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
+  const chatMessagesElement = document.getElementById('chat-messages');
+  chatMessagesElement.innerHTML = '';
+  messages.forEach(message => {
+    const listItem = document.createElement('li');
+    listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
+    listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
 
-      chatMessagesElement.appendChild(listItem);
-    });
-  };
+    chatMessagesElement.appendChild(listItem);
+  });
 
+  // Scroll to the bottom of the chat messages container
+  chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
+};
 
 // Call the fetchMessages function to fetch messages initially
 fetchMessages();
@@ -77,6 +78,7 @@ fetchMessages();
 setInterval(() => {
   fetchMessages();
 }, 3000);
+
 
 // Function to send status update to the server
 function sendStatusUpdate() {
@@ -94,6 +96,36 @@ setInterval(() => {
   sendStatusUpdate();
 }, 5000);
 
+
+
+
+
+// Get references to the input field and send button
+const chatInput = document.getElementById('chat-input');
+
+// Set the data-test attribute for the chatInput element
+chatInput.setAttribute('data-test', 'input-message');
+
+const sendButton = document.getElementById('send-button');
+
+// Add click event listener to the send button
+sendButton.addEventListener('click', (event) => {
+  event.preventDefault(); // Prevent form submission
+  const messageText = chatInput.value; // Get the text from the input field
+  if (messageText) {
+    // If the input field is not empty, send the public message
+    sendMessage(username, messageText);
+    chatInput.value = ''; // Clear the input field after sending the message
+  }
+});
+
+
+
+
+
+// Função para enviar uma mensagem pública
+// Função para enviar uma mensagem pública
+// Function to send a public message
 // Function to send a public message
 function sendMessage(userName, messageText) {
   // Get the current time
@@ -101,7 +133,7 @@ function sendMessage(userName, messageText) {
 
   // Create a message object in the desired format
   const message = {
-    from: username,
+    from: userName,
     to: 'public',
     text: messageText,
     time: currentTime,
@@ -116,5 +148,10 @@ function sendMessage(userName, messageText) {
     .then(response => {
       // If the server responds with a successful status (200), continue fetching and displaying messages
       console.log(`Public message sent by user ${username}.`);
-      // Removed the redundant call
-    })}
+      // Removed the redundant call to fetchMessagesAndDisplay() here
+    })
+    .catch(error => {
+      // Handle error for sending public message
+      console.error(`Error sending public message: ${error.message}`);
+    });
+}
