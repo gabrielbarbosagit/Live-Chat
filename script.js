@@ -3,8 +3,7 @@ axios.defaults.headers.common['Authorization'] = 'PA5po1mijRqzQnSaymxtk4H7';
 
 let username = ''; // Initialize username variable
 
-// Function to enter the room
-// Function to enter the room
+
 // Function to enter the room
 const enterRoom = () => {
   axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', { name: username })
@@ -48,29 +47,7 @@ promptForUsername();
 
 
 
-// Rest of your code
-// ...
 
-
-
-// Rest of your code
-// ...
-
-
-// Rest of your code
-// ...
-
-
-// Rest of your code
-// ...
-
-
-// Rest of your code
-// ...
-
-
-// Rest of your code
-// ...
 
 
 
@@ -157,10 +134,7 @@ sendButton.addEventListener('click', (event) => {
 
 
 // Função para enviar uma mensagem pública
-// Função para enviar uma mensagem pública
-// Function to send a public message
-// Function to send a public message
-// teste-dateteste
+
 function sendMessage(userName, messageText) {
   // Get the current time
   const currentTime = new Date().toLocaleTimeString();
@@ -171,7 +145,8 @@ function sendMessage(userName, messageText) {
     to: 'public',
     text: messageText,
     time: currentTime,
-    type: 'message'
+    type: 'message',
+    'data-test': 'message' // Add the data-test attribute to the message object
   };
 
   // Display the message in the console
