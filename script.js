@@ -127,6 +127,7 @@ sendButton.addEventListener('click', (event) => {
 // Função para enviar uma mensagem pública
 // Function to send a public message
 // Function to send a public message
+// teste-dateteste
 function sendMessage(userName, messageText) {
   // Get the current time
   const currentTime = new Date().toLocaleTimeString();
