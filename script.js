@@ -6,7 +6,6 @@ let username = ''; // Initialize username variable
 // Function to enter the room
 // Function to enter the room
 // Function to enter the room
-// Function to enter the room
 const enterRoom = () => {
   axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', { name: username })
     .then(response => {
@@ -19,6 +18,7 @@ const enterRoom = () => {
       if (error.response && error.response.status === 400) {
         console.error('Failed to enter the room:', 'Username already in use');
         alert('Failed to enter the room: Username already in use'); // Show alert
+        username = ''; // Reset username
         promptForUsername(); // Prompt for another username
       } else {
         console.error('Failed to enter the room:', error);
@@ -28,27 +28,23 @@ const enterRoom = () => {
 
 // Function to prompt user for username
 const promptForUsername = () => {
-  const promptInput = prompt('Enter your username:');
-  if (promptInput !== null && promptInput.trim() !== '') { // Check if prompt input is not null and not empty
-    const inputElement = document.querySelector('input'); // Select the existing input element
-    inputElement.setAttribute('data-test', 'input-name'); // Add data-test attribute with value 'input-name' to input element
-    const newUsername = promptInput.trim(); // Set username from prompt input
-    if (newUsername !== username) { // Check if entered username is different from previous username
-      username = newUsername; // Update username
+  // Only prompt for username if it hasn't been entered before
+  if (!username) {
+    const promptInput = prompt('Enter your username:');
+    if (promptInput !== null && promptInput.trim() !== '') { // Check if prompt input is not null and not empty
+      const inputElement = document.querySelector('input'); // Select the existing input element
+      inputElement.setAttribute('data-test', 'input-name'); // Add data-test attribute with value 'input-name' to input element
+      username = promptInput.trim(); // Set username from prompt input
       enterRoom(); // Call enterRoom() function
     } else {
-      // If username is the same as previous username, prompt again
+      // If username is not entered or entered as empty, prompt again
       promptForUsername(); // Prompt for another username
     }
-  } else {
-    // If username is not entered or entered as empty, prompt again
-    promptForUsername(); // Prompt for another username
   }
 };
 
 // Call promptForUsername() function to prompt for username when page is loaded
 promptForUsername();
-
 
 
 
