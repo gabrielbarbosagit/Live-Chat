@@ -136,6 +136,7 @@ sendButton.addEventListener('click', (event) => {
 // Função para enviar uma mensagem pública
 
 // Função para enviar uma mensagem pública
+// Função para enviar uma mensagem pública
 function sendMessage(userName, messageText) {
   // Get the current time
   const currentTime = new Date().toLocaleTimeString();
@@ -156,22 +157,23 @@ function sendMessage(userName, messageText) {
   // Append the sent message to the messages container immediately
   const messagesContainer = document.getElementById('chat-messages');
   const messageElement = document.createElement('li');
-  messageElement.textContent = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
+  // Use innerHTML instead of textContent to interpret HTML tags
+  messageElement.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
   messagesContainer.appendChild(messageElement);
 
   // Send a POST request to the API endpoint to send a public message
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', message)
-    .then(response => {
-      // If the server responds with a successful status (200), continue fetching and displaying messages
-      console.log(`Public message sent by user ${userName}.`);
-      // Fetch and display messages again to update the chat
-      fetchMessagesAndDisplay();
-    })
-    .catch(error => {
-      // Handle error for sending public message
-      console.error(`Error sending public message: ${error.message}`);
-      // Reload the page to go back to the name input step
+  .then(response => {
+    // If the server responds with a successful status (200), continue fetching and displaying messages
+    console.log(`Public message sent by user ${userName}.`);
+    // Fetch and display messages again to update the chat
+    fetchMessagesAndDisplay();
+  })
+  .catch(error => {
+    // Handle error for sending public message
+    console.error(`Error sending public message: ${error.message}`);
+    // Reload the page to go back to the name input step only if the error is not related to network issues
+    if (error.response) {
       window.location.reload();
-    });
-}
-
+    }
+  })};
