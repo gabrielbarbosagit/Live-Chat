@@ -135,6 +135,7 @@ sendButton.addEventListener('click', (event) => {
 
 // Função para enviar uma mensagem pública
 
+// Função para enviar uma mensagem pública
 function sendMessage(userName, messageText) {
   // Get the current time
   const currentTime = new Date().toLocaleTimeString();
@@ -163,10 +164,14 @@ function sendMessage(userName, messageText) {
     .then(response => {
       // If the server responds with a successful status (200), continue fetching and displaying messages
       console.log(`Public message sent by user ${userName}.`);
-      // Removed the redundant call to fetchMessagesAndDisplay() here
+      // Fetch and display messages again to update the chat
+      fetchMessagesAndDisplay();
     })
     .catch(error => {
       // Handle error for sending public message
       console.error(`Error sending public message: ${error.message}`);
+      // Reload the page to go back to the name input step
+      window.location.reload();
     });
 }
+
