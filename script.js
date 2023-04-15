@@ -164,6 +164,9 @@ function sendMessage(userName, messageText) {
   messageElement.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
   messagesContainer.appendChild(messageElement);
 
+  // Scroll to the bottom of the chat messages container
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
   // Send a POST request to the API endpoint to send a public message
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', message)
   .then(response => {
@@ -179,4 +182,5 @@ function sendMessage(userName, messageText) {
     if (error.response) {
       window.location.reload();
     }
-  })};
+  });
+};
