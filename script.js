@@ -25,6 +25,7 @@ const enterRoom = () => {
     });
 };
 
+
 // Function to prompt user for username
 const promptForUsername = () => {
   // Only prompt for username if it hasn't been entered before
@@ -45,24 +46,20 @@ const promptForUsername = () => {
 // Call promptForUsername() function to prompt for username when page is loaded
 promptForUsername();
 
-
-
-
-
-
-
 // Function to fetch messages from the server
 const fetchMessages = () => {
-  axios.get('https://mock-api.driven.com.br/api/vm/uol/messages')
-    .then(response => {
-      if (response.status === 200) {
-        console.log('Fetched messages:', response.data);
-        displayMessages(response.data);
-      }
-    })
-    .catch(error => {
-      console.error('Failed to fetch messages:', error);
-    });
+  if (username !== '') { // Check if username is valid before fetching messages
+    axios.get('https://mock-api.driven.com.br/api/vm/uol/messages')
+      .then(response => {
+        if (response.status === 200) {
+          console.log('Fetched messages:', response.data);
+          displayMessages(response.data);
+        }
+      })
+      .catch(error => {
+        console.error('Failed to fetch messages:', error);
+      });
+  }
 };
 
 // Function to display messages according to layout
@@ -82,14 +79,7 @@ const displayMessages = (messages) => {
   chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
 };
 
-
-// Call the fetchMessages function to fetch messages initially
-fetchMessages();
-
 // Call the function every 3 seconds to fetch periodic updates
-setInterval(() => {
-  fetchMessages();
-}, 3000);
 
 
 // Function to send status update to the server
