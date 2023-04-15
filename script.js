@@ -25,7 +25,6 @@ const enterRoom = () => {
     });
 };
 
-
 // Function to prompt user for username
 const promptForUsername = () => {
   // Only prompt for username if it hasn't been entered before
@@ -46,22 +45,27 @@ const promptForUsername = () => {
 // Call promptForUsername() function to prompt for username when page is loaded
 promptForUsername();
 
+
+
+
+
+
+
 // Function to fetch messages from the server
 const fetchMessages = () => {
-  if (username !== '') { // Check if username is valid before fetching messages
-    axios.get('https://mock-api.driven.com.br/api/vm/uol/messages')
-      .then(response => {
-        if (response.status === 200) {
-          console.log('Fetched messages:', response.data);
-          displayMessages(response.data);
-        }
-      })
-      .catch(error => {
-        console.error('Failed to fetch messages:', error);
-      });
-  }
+  axios.get('https://mock-api.driven.com.br/api/vm/uol/messages')
+    .then(response => {
+      if (response.status === 200) {
+        console.log('Fetched messages:', response.data);
+        displayMessages(response.data);
+      }
+    })
+    .catch(error => {
+      console.error('Failed to fetch messages:', error);
+    });
 };
 
+// Function to display messages according to layout
 // Function to display messages according to layout
 const displayMessages = (messages) => {
   const chatMessagesElement = document.getElementById('chat-messages');
@@ -79,10 +83,14 @@ const displayMessages = (messages) => {
   chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
 };
 
-// Call the function every 3 seconds to fetch periodic updates
 
+// Call the fetchMessages function to fetch messages initially
+fetchMessages();
 
 // Call the function every 3 seconds to fetch periodic updates
+setInterval(() => {
+  fetchMessages();
+}, 3000);
 
 
 // Function to send status update to the server
@@ -131,7 +139,6 @@ sendButton.addEventListener('click', (event) => {
 // Função para enviar uma mensagem pública
 
 // Função para enviar uma mensagem pública
-
 function sendMessage(userName, messageText) {
   // Get the current time
   const currentTime = new Date().toLocaleTimeString();
@@ -151,20 +158,27 @@ function sendMessage(userName, messageText) {
 
   // Append the sent message to the messages container immediately
   const messagesContainer = document.getElementById('chat-messages');
-  messagesContainer.innerHTML += `<li data-test="message"><strong>${message.from}</strong> ${message.text} ${message.time}</li>`;
+  const messageElement = document.createElement('li');
+  messageElement.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`; // Update innerHTML instead of textContent
+  messagesContainer.appendChild(messageElement);
 
-  // Send API request with message object as data
+  // Scroll to the bottom of the chat messages container
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  // Send a POST request to the API endpoint to send a public message
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', message)
     .then(response => {
-      if (response.status === 200) {
-        console.log('Message sent:', response.data);
-      }
+      // If the server responds with a successful status (200), continue fetching and displaying messages
+      console.log(`Public message sent by user ${userName}.`);
+      // Fetch and display messages again to update the chat
+      fetchMessagesAndDisplay();
     })
     .catch(error => {
-      console.error('Failed to send message:', error);
-      
+      // Handle error for sending public message
+      console.error(`Error sending public message: ${error.message}`);
+      // Reload the page only if there is an error status returned by the server
+      if (error.response && error.response.status) {
+        window.location.reload();
+      }
     });
 }
-
-        
-    

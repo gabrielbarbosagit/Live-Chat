@@ -1,0 +1,149 @@
+commit 6cd3ecbfd4fe45f1e8e24fb77e48f8f81c1feadc
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Sat Apr 15 18:14:25 2023 -0300
+
+    asasasaresete
+
+commit 646676f7ca7d874c592668057c375010414bd5ed
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Sat Apr 15 18:04:53 2023 -0300
+
+    teste com horarios e valid user
+
+commit 9648b6a609fa1842e12699730e5672dd7a3f3f8d
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Sat Apr 15 17:51:35 2023 -0300
+
+    teste reload hora das mensagens
+
+commit 6c34e4bd8e1cfff06009d2ba376577984c13be36
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 21:17:42 2023 -0300
+
+    teste-mensagem
+
+commit a386c75cd468eedf4f5f184bd60aa13dda4c1bd4
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 20:55:45 2023 -0300
+
+    TESTE RELOAD
+
+commit c801e492ed3ecd7e52eae3cdcdfe167cd57163ac
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 20:40:35 2023 -0300
+
+    testesteste
+
+commit 9d1eac0a062f4f9419ba96d292ddfb96adf39431
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 20:33:21 2023 -0300
+
+    testesteste
+
+commit 477976c247ea30cd7f3cd8229acde3d5048cc1f8
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 20:16:39 2023 -0300
+
+    new teste
+
+commit d825e6d8d98b89a2afdc9c9195d117b095b0bf50
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 19:51:57 2023 -0300
+
+    testestesteste
+
+commit 22981df2e1ae505ecf281f94fe8ae8cadeaaa2f5
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 19:15:59 2023 -0300
+
+    teste windows reload
+
+commit 905d8cb7fa210ec7c374d695f68d9b199b0a04b8
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 19:00:51 2023 -0300
+
+    return
+
+commit 855171c725fff193d801a65342362493c5ff104f
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 18:53:37 2023 -0300
+
+    teste com o delay dee mensagens
+
+commit 1f3b06c16a4a793139b707b7eeebb1b85c154cd9
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 18:38:38 2023 -0300
+
+    messages test
+
+commit 6db999e4dfab06ba1de18e73428cc2a3af76d1a2
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 18:24:46 2023 -0300
+
+    teste-data-test
+
+commit db4ef3e1d355cf68e69c1dbd0689a8e2b23ae6d5
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 17:33:17 2023 -0300
+
+    teste
+
+commit 5fbb44e1c81279e7737cf2ae30418491e230e862
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 16:36:58 2023 -0300
+
+    teste usuario valido
+
+commit 087f19f74059b46eda0438c873673bba290551c1
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 15:44:29 2023 -0300
+
+    teste
+
+commit 7432dfee855f24f01d15aa2287e3ea2dd99de63a
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 14:10:17 2023 -0300
+
+    datateste=send message
+
+commit 20d2835c687a4a18e672bac3a0643f5b21e92886
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 13:58:05 2023 -0300
+
+    teste-date-teste
+
+commit d7498e2d4ccf3fde59dafa107c7424c6c7ed76fc
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Fri Apr 14 13:34:47 2023 -0300
+
+    data-teste - test / chat-input prompt messages
+
+commit 4e6b99fbd7fc5de4fe3bb37ace1c846039f6a14d
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Thu Apr 13 20:12:23 2023 -0300
+
+    data-test- teste
+
+commit 02b7a7eafcd7e2d642b0f667332f3eab20293ad3
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Thu Apr 13 18:55:13 2023 -0300
+
+    teste data-test
+
+commit e65bb5a569c9af23d4302adc6bfa7684a61bf78f
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Thu Apr 13 18:43:13 2023 -0300
+
+    data-test teste
+
+commit a8ce99c0dd01ebf8974e38e9798075f65c97b363
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Thu Apr 13 18:35:11 2023 -0300
+
+    novo javascript
+
+commit e44c5f2980f9e5b0d2b8caf826421d65bf36290c
+Author: gabriel barbosa <gabrielb_lima@hotmail.com>
+Date:   Wed Apr 12 12:46:35 2023 -0300
+
+    teste uol
