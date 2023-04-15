@@ -141,44 +141,44 @@ sendButton.addEventListener('click', (event) => {
 // Função para enviar uma mensagem pública
 // Função para enviar uma mensagem pública
 function sendMessage(userName, messageText) {
-  // Get the current time
+  // Obter o horário atual
   const currentTime = new Date().toLocaleTimeString();
 
-  // Create a message object in the desired format
+  // Criar um objeto de mensagem no formato desejado
   const message = {
     from: userName,
     to: 'public',
     text: messageText,
     time: currentTime,
     type: 'message',
-    'data-test': 'message' // Add the data-test attribute to the message object
+    'data-test': 'message' // Adicionar o atributo data-test à mensagem
   };
 
-  // Display the message in the console
+  // Exibir a mensagem no console
   console.log(`From: ${userName}, Text: ${messageText}, Time: ${currentTime}`);
 
-  // Append the sent message to the messages container immediately
+  // Adicionar a mensagem enviada imediatamente ao container de mensagens
   const messagesContainer = document.getElementById('chat-messages');
   const messageElement = document.createElement('li');
-  // Use innerHTML instead of textContent to interpret HTML tags
-  messageElement.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
+  // Usar textContent para inserir o texto da mensagem de forma segura
+  messageElement.textContent = `${message.from}: ${message.text} ${message.time}`;
   messagesContainer.appendChild(messageElement);
 
-  // Scroll to the bottom of the chat messages container
+  // Rolar até o final do container de mensagens do chat
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-  // Send a POST request to the API endpoint to send a public message
+  // Enviar uma solicitação POST para o endpoint da API para enviar uma mensagem pública
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', message)
   .then(response => {
-    // If the server responds with a successful status (200), continue fetching and displaying messages
-    console.log(`Public message sent by user ${userName}.`);
-    // Fetch and display messages again to update the chat
+    // Se o servidor responder com um status de sucesso (200), continuar buscando e exibindo mensagens
+    console.log(`Mensagem pública enviada pelo usuário ${userName}.`);
+    // Buscar e exibir as mensagens novamente para atualizar o chat
     fetchMessagesAndDisplay();
   })
   .catch(error => {
-    // Handle error for sending public message
-    console.error(`Error sending public message: ${error.message}`);
-    // Reload the page to go back to the name input step only if the error is not related to network issues
+    // Lidar com erro ao enviar mensagem pública
+    console.error(`Erro ao enviar mensagem pública: ${error.message}`);
+    // Recarregar a página para voltar à etapa de entrada do nome somente se o erro não estiver relacionado a problemas de rede
     if (error.response) {
       window.location.reload();
     }
