@@ -66,13 +66,15 @@ const fetchMessages = () => {
 };
 
 // Function to display messages according to layout
+// Function to display messages according to layout
 const displayMessages = (messages) => {
   const chatMessagesElement = document.getElementById('chat-messages');
   chatMessagesElement.innerHTML = '';
   messages.forEach(message => {
     const listItem = document.createElement('li');
     listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
-    listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${message.time}`;
+    const messageTime = new Date().toLocaleTimeString(); // Get the current time from your PC
+    listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${messageTime}`; // Update the message with the current time
 
     chatMessagesElement.appendChild(listItem);
   });
@@ -80,6 +82,7 @@ const displayMessages = (messages) => {
   // Scroll to the bottom of the chat messages container
   chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
 };
+
 
 // Call the fetchMessages function to fetch messages initially
 fetchMessages();
