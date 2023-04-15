@@ -82,6 +82,9 @@ const displayMessages = (messages) => {
 // Call the function every 3 seconds to fetch periodic updates
 
 
+// Call the function every 3 seconds to fetch periodic updates
+
+
 // Function to send status update to the server
 function sendStatusUpdate() {
   axios.post('https://mock-api.driven.com.br/api/vm/uol/status', { name: username })
@@ -159,7 +162,7 @@ function sendMessage(userName, messageText) {
     })
     .catch(error => {
       console.error('Failed to send message:', error);
-      location.reload();
+      
     });
 }
 
