@@ -2,19 +2,24 @@
 <html>
 <head>
   <title>Chat UOL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="./style.css">
- 
 </head>
 <body>
-  <div id="chat-container">
+  <div class="header"> 
+    <img src="./imagens/logo.png" alt="logo" class="logo-img"> <!-- Add a class "logo-img" to the "logo" image -->
+    <img src="./imagens/pessoas.png" alt="pessoas" class="pessoas-img"> <!-- Add a class "pessoas-img" to the "pessoas" image -->
+  </div>
+  <div class="container">
     <ul id="chat-messages" data-test="messsage"></ul>
+  </div> <!-- Move the closing div tag for the container here -->
+  <div class="footer">
     <form id="chat-form">
       <input type="text" id="chat-input" placeholder="Digite sua mensagem..." data-test="input-message" />
-      <button type="button" id="send-button" data-test="send-message">Enviar</button>
+      <img src="./imagens/botao.png" alt="Enviar" id="send-button" data-test="send-message"> <!-- Replace button with img element -->
     </form>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
   <script src="script.js"></script>
 </body>
 </html>

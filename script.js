@@ -66,15 +66,17 @@ const fetchMessages = () => {
 };
 
 // Function to display messages according to layout
-// Function to display messages according to layout
 const displayMessages = (messages) => {
   const chatMessagesElement = document.getElementById('chat-messages');
   chatMessagesElement.innerHTML = '';
   messages.forEach(message => {
     const listItem = document.createElement('li');
     listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
-    const messageTime = new Date().toLocaleTimeString(); // Get the current time from your PC
-    listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${messageTime}`; // Update the message with the current time
+
+    // Get the current time from the user's computer
+    const currentTime = new Date().toLocaleTimeString();
+    
+    listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${currentTime}`; // Display the current time
 
     chatMessagesElement.appendChild(listItem);
   });
@@ -138,49 +140,40 @@ sendButton.addEventListener('click', (event) => {
 
 // Função para enviar uma mensagem pública
 
-// Função para enviar uma mensagem pública
-// Função para enviar uma mensagem pública
 function sendMessage(userName, messageText) {
-  // Obter o horário atual
+  // Get the current time
   const currentTime = new Date().toLocaleTimeString();
 
-  // Criar um objeto de mensagem no formato desejado
+  // Create a message object in the desired format
   const message = {
     from: userName,
     to: 'public',
     text: messageText,
     time: currentTime,
     type: 'message',
-    'data-test': 'message' // Adicionar o atributo data-test à mensagem
+    'data-test': 'message' // Add the data-test attribute to the message object
   };
 
-  // Exibir a mensagem no console
+  // Display the message in the console
   console.log(`From: ${userName}, Text: ${messageText}, Time: ${currentTime}`);
 
-  // Adicionar a mensagem enviada imediatamente ao container de mensagens
+  // Append the sent message to the messages container immediately
   const messagesContainer = document.getElementById('chat-messages');
-  const messageElement = document.createElement('li');
-  // Usar textContent para inserir o texto da mensagem de forma segura
-  messageElement.textContent = `${message.from}: ${message.text} ${message.time}`;
-  messagesContainer.appendChild(messageElement);
+  messagesContainer.innerHTML += `<li data-test="message"><strong>${message.from}</strong> ${message.text} ${message.time}</li>`;
 
-  // Rolar até o final do container de mensagens do chat
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-  // Enviar uma solicitação POST para o endpoint da API para enviar uma mensagem pública
+  // Send API request with message object as data
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', message)
-  .then(response => {
-    // Se o servidor responder com um status de sucesso (200), continuar buscando e exibindo mensagens
-    console.log(`Mensagem pública enviada pelo usuário ${userName}.`);
-    // Buscar e exibir as mensagens novamente para atualizar o chat
-    fetchMessagesAndDisplay();
-  })
-  .catch(error => {
-    // Lidar com erro ao enviar mensagem pública
-    console.error(`Erro ao enviar mensagem pública: ${error.message}`);
-    // Recarregar a página para voltar à etapa de entrada do nome somente se o erro não estiver relacionado a problemas de rede
-    if (error.response) {
-      window.location.reload();
-    }
-  });
-};
+    .then(response => {
+      if (response.status === 200) {
+        // Display messages logic
+        console.log('Messages:', response.data); // Add console.log for success
+      }
+    })
+    .catch(error => {
+      if (error.response && error.response.status === 400) {
+        // Reload page logic
+        console.log('Error:', error.response.data); // Add console.log for error
+        location.reload();
+      }
+    });
+}
