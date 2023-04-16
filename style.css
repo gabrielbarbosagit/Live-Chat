@@ -1,74 +1,82 @@
-/* Reset default margin and padding for all elements */
+@media screen and (max-width: 600px) {
+  .header {
+    width: 100%;
+    background-color: red;
+    height: 80px;
+    top: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 0;
+  }
+
+  .logo {
+    margin-left: 22px;
+  }
+
+  .iconePessoas {
+    margin-right: 22px;
+  }
 
 
-/* Set default font styles and size */
-body {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-}
+  .container {
+    width: 100%;
+    
+    height: 650px
+  }
 
-/* Header styles */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 350px;
-  height: 50px;
-  background-color: #f8f8f8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  z-index: 1;
-}
+  .footer-container {
+    width: 100%;
+    
+    background-color: blue;
+    height: 80px;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 0;
+  }
 
+  #divBusca {
+    background-color: #2f4f4f;
+    border: solid 1px;
+    border-radius: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+  }
 
+    
+  #send-button {
+    margin-right: 22px;
+  }
 
-
-/* Container styles */
-.container {
-  margin-top: 50px; /* Add margin-top to push container below header */
-  width: 350px;
-  padding: 10px;
-  overflow-y: auto;
-  max-height: calc(100vh - 160px); /* Subtract header and footer height from viewport height */
-}
-
-/* Chat messages styles */
-
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 350px;
-  height: 20px;
-  background-color: #f8f8f8;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  z-index: 1;
-  justify-content: space-between;
-}
-
-#send-button {
-  padding: 5px 10px;
-  width: 20px;
-  height: 20px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-left: 129px;
-}
-
-
-
-
-#chat-input::placeholder {
-  color: #999;
-  font-style: italic;
-  border: none;
-  
+  #chat-input {
+    float: left;
+    background-color: transparent;
+    padding-left: 5px;
+    font-style: italic;
+    font-size: 18px;
+    border: none;
+    height: 32px;
+    width: 260px;
+    width: 100%;
+    margin-left: 22px;
+  }
+  input {
+    padding: 0;
+    margin: 5px 0;
+    outline: none;
+  }
+  #chat-input:focus,
+  #chat-input:active {
+    border-color: transparent;
+    border-bottom: 2px solid #1c87c9;
+  }
 }
