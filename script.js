@@ -67,31 +67,22 @@ const fetchMessages = () => {
 };
 
 // Function to display messages according to layout
-// Function to display messages according to layout
-// Function to display messages according to layout
 const displayMessages = (messages) => {
   const chatMessagesElement = document.getElementById('chat-messages');
   chatMessagesElement.innerHTML = '';
   messages.forEach(message => {
     const listItem = document.createElement('li');
+    listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
     listItem.classList.add('custom-list-style'); // Add custom class to remove bullet point marker
     listItem.classList.add('message-box'); // Add custom class for message box style
 
     // Get the current time from the user's computer
-    const currentTime = message.time;
-
+    const currentTime = message.time
+    
     listItem.innerHTML = `(<span class="time">${currentTime.trim()}</span>) <strong>${message.from}</strong> ${message.text}`;
 
-
-
-
-
-
-
-
-
-    // Check if the message text contains "entra na sala" and change background color to light gray
-    if (message.text.includes('entra na sala')) {
+     // Check if the message text contains "entra na sala" and change background color to light gray
+     if (message.text.includes('entra na sala')) {
       listItem.style.backgroundColor = 'lightgray';
     }
 
@@ -105,9 +96,6 @@ const displayMessages = (messages) => {
   // Scroll to the bottom of the chat messages container
   chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
 };
-
-
-
 
 
 // Call the fetchMessages function to fetch messages initially
@@ -190,17 +178,10 @@ function sendMessage(userName, messageText) {
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', messageObj)
     .then(response => {
       console.log(`Message sent successfully: ${JSON.stringify(response.data)}`);
-      // Add the sent message to the list of messages displayed in the UI
-      const chatMessagesElement = document.getElementById('chat-messages');
-      const listItem = document.createElement('li');
-      listItem.classList.add('custom-list-style'); // Add custom class to remove bullet point marker
-      listItem.classList.add('message-box'); // Add custom class for message box style
-      listItem.innerHTML = `(<span class="time">${formattedTime.trim()}</span>) <strong>${userName}</strong> ${messageText}`;
-      chatMessagesElement.appendChild(listItem);
-      chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight; // Scroll to the bottom of the chat messages container
+      fetchMessages(); // Fetch updated messages and append them to messages container
     })
     .catch(error => {
       console.error(`Failed to send message: ${error}`);
-      window.location.reload();
     });
 }
+
