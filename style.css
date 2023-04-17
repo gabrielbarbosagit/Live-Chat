@@ -22,9 +22,12 @@
 
   .container {
     width: 100%;
-    padding-top: 100px; /* Add padding top to accommodate header height */
-    height: calc(100vh - 180px); /* Use calc() to set container height dynamically based on window height and header/footer height */
-    overflow-y: auto; /* Add scroll functionality for overflowing content */
+    padding-top: 100px;
+    height: calc(100vh - 180px);
+    overflow-y: auto; /* Add vertical scroll functionality for overflowing content */
+    overflow-x: hidden; /* Hide horizontal scroll */
+    word-wrap: break-word; /* Add word-wrap property to allow long words to wrap to a new line */
+    margin-left: 0px;
   }
 
   .footer-container {
@@ -83,5 +86,69 @@
 
   #chat-messages {
     padding-bottom: 10px;
+    overflow-wrap: anywhere; /* Use overflow-wrap with 'anywhere' value as an alternative */
+    white-space: pre-wrap; /* Add word-wrap property to allow long messages to wrap to a new line */
+    flex-grow: 1;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    
+    
+    
+    
+   
+    
+  }
+
+  .custom-list-style {
+    list-style-type: none !important; /* set to none to remove bullet point marker */
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin: 0;
+  }
+
+  
+  
+    
+
+  
+
+ 
+      
+  .message-box {
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: -45px;
+    flex-grow: 1; /* Add flex-grow property to fill available content */
+    width: 650px;
+  }
+
+  .time {
+    color: #aaaaaa;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .time::before {
+    content: "(";
+    color: #aaaaaa;
+    position: absolute;
+    left: -5px;
+  }
+  
+  .time::after {
+    content: ")";
+    color: #aaaaaa;
+    position: absolute;
+    right: -5px;
   }
 }
+
+
+
+    
+  
+

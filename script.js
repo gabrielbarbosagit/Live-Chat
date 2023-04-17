@@ -67,17 +67,37 @@ const fetchMessages = () => {
 };
 
 // Function to display messages according to layout
+// Function to display messages according to layout
+// Function to display messages according to layout
 const displayMessages = (messages) => {
   const chatMessagesElement = document.getElementById('chat-messages');
   chatMessagesElement.innerHTML = '';
   messages.forEach(message => {
     const listItem = document.createElement('li');
-    listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
+    listItem.classList.add('custom-list-style'); // Add custom class to remove bullet point marker
+    listItem.classList.add('message-box'); // Add custom class for message box style
 
     // Get the current time from the user's computer
-    const currentTime = message.time
-    
-    listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${currentTime}`; // Display the current time
+    const currentTime = message.time;
+
+    listItem.innerHTML = `(<span class="time">${currentTime.trim()}</span>) <strong>${message.from}</strong> ${message.text}`;
+
+
+
+
+
+
+
+
+
+    // Check if the message text contains "entra na sala" and change background color to light gray
+    if (message.text.includes('entra na sala')) {
+      listItem.style.backgroundColor = 'lightgray';
+    }
+
+    if (message.text.includes('sai da sala')) {
+      listItem.style.backgroundColor = 'lightgray'
+    }
 
     chatMessagesElement.appendChild(listItem);
   });
@@ -85,6 +105,9 @@ const displayMessages = (messages) => {
   // Scroll to the bottom of the chat messages container
   chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
 };
+
+
+
 
 
 // Call the fetchMessages function to fetch messages initially
