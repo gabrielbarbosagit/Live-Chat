@@ -190,12 +190,17 @@ function sendMessage(userName, messageText) {
   axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', messageObj)
     .then(response => {
       console.log(`Message sent successfully: ${JSON.stringify(response.data)}`);
-      fetchMessages(); // Fetch updated messages and append them to messages container
+      // Add the sent message to the list of messages displayed in the UI
+      const chatMessagesElement = document.getElementById('chat-messages');
+      const listItem = document.createElement('li');
+      listItem.classList.add('custom-list-style'); // Add custom class to remove bullet point marker
+      listItem.classList.add('message-box'); // Add custom class for message box style
+      listItem.innerHTML = `(<span class="time">${formattedTime.trim()}</span>) <strong>${userName}</strong> ${messageText}`;
+      chatMessagesElement.appendChild(listItem);
+      chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight; // Scroll to the bottom of the chat messages container
     })
     .catch(error => {
       console.error(`Failed to send message: ${error}`);
-      window.location.reload()
+      window.location.reload();
     });
 }
-
-
