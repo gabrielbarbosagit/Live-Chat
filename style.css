@@ -9,6 +9,7 @@
     justify-content: space-between;
     align-items: center;
     left: 0;
+    z-index: 1; /* Add z-index to ensure header is on top of other content */
   }
 
   .logo {
@@ -19,17 +20,16 @@
     margin-right: 22px;
   }
 
-
   .container {
     width: 100%;
-    
-    height: 650px
+    padding-top: 100px; /* Add padding top to accommodate header height */
+    height: calc(100vh - 180px); /* Use calc() to set container height dynamically based on window height and header/footer height */
+    overflow-y: auto; /* Add scroll functionality for overflowing content */
   }
 
   .footer-container {
     width: 100%;
     background-color: lightgray;
-    
     height: 80px;
     bottom: 0;
     position: fixed;
@@ -37,26 +37,23 @@
     justify-content: space-between;
     align-items: center;
     left: 0;
-    
+    z-index: 1; /* Add z-index to ensure footer is on top of other content */
   }
 
   #divBusca {
     background-color: lightgray;
-    
     border-radius: 30px;
     width: 100%;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-    position: fixed;
-    
-    
+    position: relative;
   }
 
-    
   #send-button {
     margin-right: 22px;
+    cursor: pointer;
   }
 
   #chat-input {
@@ -68,18 +65,23 @@
     border: none;
     height: 32px;
     bottom: 0;
-   
     width: 100%;
     margin-left: 22px;
   }
+
   input {
     padding: 0;
     margin: 5px 0;
     outline: none;
   }
+
   #chat-input:focus,
   #chat-input:active {
     border-color: transparent;
     border-bottom: 2px solid #1c87c9;
+  }
+
+  #chat-messages {
+    padding-bottom: 10px;
   }
 }

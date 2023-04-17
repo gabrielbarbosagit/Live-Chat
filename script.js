@@ -1,4 +1,4 @@
-// Set the access token for Axios
+
 axios.defaults.headers.common['Authorization'] = 'PA5po1mijRqzQnSaymxtk4H7';
 
 let username = ''; // Initialize username variable
@@ -11,6 +11,7 @@ const enterRoom = () => {
       if (response.status === 200) {
         console.log('Entered the room:', response.data);
         fetchMessages(); 
+        
       }
     })
     .catch(error => {
@@ -74,7 +75,7 @@ const displayMessages = (messages) => {
     listItem.setAttribute('data-test', 'message'); // Add data-test attribute with value 'message'
 
     // Get the current time from the user's computer
-    const currentTime = new Date().toLocaleTimeString();
+    const currentTime = message.time
     
     listItem.innerHTML = `<strong>${message.from}</strong> ${message.text} ${currentTime}`; // Display the current time
 
@@ -140,40 +141,37 @@ sendButton.addEventListener('click', (event) => {
 
 // Função para enviar uma mensagem pública
 
+let message = "";
+
 function sendMessage(userName, messageText) {
   // Get the current time
-  const currentTime = new Date().toLocaleTimeString();
-
+  const currentTime = new Date();
+  
+  // Format the current time as per your requirement
+  const formattedTime = `${currentTime.getHours()}:${currentTime.getMinutes()}`;
+  
   // Create a message object in the desired format
-  const message = {
+  const messageObj = {
     from: userName,
     to: 'public',
     text: messageText,
-    time: currentTime,
+    time: formattedTime,
     type: 'message',
     'data-test': 'message' // Add the data-test attribute to the message object
   };
 
   // Display the message in the console
-  console.log(`From: ${userName}, Text: ${messageText}, Time: ${currentTime}`);
-
-  // Append the sent message to the messages container immediately
-  const messagesContainer = document.getElementById('chat-messages');
-  messagesContainer.innerHTML += `<li data-test="message"><strong>${message.from}</strong> ${message.text} ${message.time}</li>`;
+  console.log(`From: ${userName}, Text: ${messageText}, Time: ${formattedTime}`);
 
   // Send API request with message object as data
-  axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', message)
+  axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', messageObj)
     .then(response => {
-      if (response.status === 200) {
-        // Display messages logic
-        console.log('Messages:', response.data); // Add console.log for success
-      }
+      console.log(`Message sent successfully: ${JSON.stringify(response.data)}`);
+      fetchMessages(); // Fetch updated messages and append them to messages container
     })
     .catch(error => {
-      if (error.response && error.response.status === 400) {
-        // Reload page logic
-        console.log('Error:', error.response.data); // Add console.log for error
-        location.reload();
-      }
+      console.error(`Failed to send message: ${error}`);
     });
 }
+
+
