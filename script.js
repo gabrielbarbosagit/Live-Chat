@@ -182,6 +182,7 @@ function sendMessage(userName, messageText) {
     })
     .catch(error => {
       console.error(`Failed to send message: ${error}`);
+      window.location.reload()
     });
 }
 
